@@ -18,15 +18,17 @@ namespace Rosalind
             symbols.Add('G', 0);
             symbols.Add('T', 0);
             foreach (char ch in str)
-                symbols[ch]++;
-            string output = "";
+                if (symbols.ContainsKey(ch))
+                    symbols[ch]++;
+            string output = string.Empty;
             foreach (int counter in symbols.Values)
                 output = String.Format("{0} {1}", output, counter);
             return output.TrimStart();
         }
         static void Main(string[] args)
         {
-            string input = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC";
+            //string input = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC";
+            string input = System.IO.File.ReadAllText(@"rosalind_dna.txt");
             Console.WriteLine(dna(input));
             Console.ReadKey();
         }
