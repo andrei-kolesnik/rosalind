@@ -28,7 +28,7 @@ namespace Rosalind
         static void Main(string[] args)
         {
             //string input = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC";
-            string input = System.IO.File.ReadAllText(@"rosalind_dna.txt");
+            string input = System.IO.File.ReadAllText(@"rosalind_dna.txt"); //Output: 201 241 215 201
             Console.WriteLine(dna(input));
             Console.ReadKey();
         }
