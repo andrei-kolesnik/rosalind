@@ -14,11 +14,10 @@ __int64 fib(int n, int k)
 		return found->second;
 
 	__int64 result = 0;
-	if (n < 3) result = 1;
+	if (n < 3) 
+		result = 1;
 	else
-	{
 		result = fib(n - 2, k) * k + fib(n - 1, k);
-	}
 	fibs[n] = result;
 	return result;
 }
