@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-//Sample Dataset
+﻿//Sample Dataset
 //>Rosalind_6404
 //CCTGCGGAAGATCGGCACTAGAATAGCCAGAACCGTTTCTCTGAGGCTTCCGGCCTTCCC
 //TCCCACTAATAATTCTGAGG
@@ -13,23 +11,28 @@ using System.Collections.Generic;
 //Sample Output
 //Rosalind_0808
 //60.919540
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace Rosalind
 {
-    internal struct GCcontent
+    internal class GCcontent
     {
-        public string id;
-        public float pc;
-        public GCcontent(string id, float pc) { this.id = id; this.pc = pc; }
+        public string data { get; set; }
+        public float gc { get; set; }
+//        public GCcontent(string data, float pc) { this.data = data; this.gc = gc; }
     }
 
     internal class FASTA
     {
-        public Dictionary<string, string> labels;
+        public Dictionary<string, GCcontent> labels;
 
         public FASTA()
         {
-            labels = new Dictionary<string, string>();
+            labels = new Dictionary<string, GCcontent>();
         }
+
         public static float GetGC(string dna)
         {
             if (dna.Length == 0) return 0F;
@@ -41,9 +44,11 @@ namespace Rosalind
                 }
             return (float)gcCount / dna.Length;
         }
-        public GCcontent GetHighestGC(string filename)
+
+        public void GetHighestGC(string filename, out string id, out float gc)
         {
-            GCcontent result = new GCcontent("{Empty}", 0);
+            id = "";
+            gc = 0F;
             string[] data = System.IO.File.ReadAllLines(filename);
             string current = String.Empty;
             foreach (string str in data)
@@ -51,22 +56,21 @@ namespace Rosalind
                 if (str[0] == '>')
                 {
                     current = str.Substring(1);
-                    labels[current] = String.Empty;
+                    labels[current] = new GCcontent();
                 }
                 else if (current.Length > 0)
-                    labels[current] += str;
+                    labels[current].data += str;
                 //else we just ignore the string
             }
-            foreach(var dna in labels) //dna is KeyValuePair<string, string>
+            foreach(var label in labels) //label is KeyValuePair<string, string>
+                labels[label.Key].gc = GetGC(label.Value.data);
+            //could have calculated MAX in the loop above, but just wanted to illustrate Max with LINQ
+            foreach(var label in labels.OrderByDescending(i => i.Value.gc).Take(1))
             {
-                float gc = GetGC(dna.Value);
-                if (gc > result.pc)
-                {
-                    result.id = dna.Key;
-                    result.pc = gc;
-                }
+                id = label.Key;
+                gc = label.Value.gc;
+                return;
             }
-            return result;
         }
     }
 
@@ -75,9 +79,11 @@ namespace Rosalind
         static void Main(string[] args)
         {
             FASTA fasta = new FASTA();
-            GCcontent highest = fasta.GetHighestGC(@"rosalind_gc_1_dataset.txt");
-            System.Console.WriteLine("{0}", highest.id);
-            System.Console.WriteLine("{0}", highest.pc);
+            string id;
+            float gc;
+            fasta.GetHighestGC(@"rosalind_gc_1_dataset.txt", out id, out gc);
+            System.Console.WriteLine("{0}", id);
+            System.Console.WriteLine("{0}", gc);
             System.Console.ReadKey();
         }
     }
