@@ -15,6 +15,9 @@
 * File.ReadAllLines
 * Dictionary
 * Linq
+### [PROT](PROT): [Translating RNA into Protein](http://rosalind.info/problems/prot/) [C#.NET]
+* Dictionary
+* StringBuilder
 ### [SUBS](SUBS): [Finding a Motif in DNA](http://rosalind.info/problems/subs/) [C#.NET]
 * extension methods (C# 3.0)
 * IEnumerable
