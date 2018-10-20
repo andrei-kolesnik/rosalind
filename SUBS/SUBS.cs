@@ -18,7 +18,7 @@ namespace Rosalind
         public static IEnumerable<int> Subs(this string source, string motif)
         {
             //foreach (Match match in Regex.Matches(source, Regex.Escape(motif))) //does not find overlapping results
-            //    yield return match.Index+1;
+            //    yield return match.Index+1; //returns "2 10" instead of "2 4 10"
             int result = 0;
             while (result < source.Length)
             {
