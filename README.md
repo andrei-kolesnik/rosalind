@@ -4,6 +4,9 @@
 * SortedDictionary
 ### [RNA](RNA): [Transcribing DNA into RNA](http://rosalind.info/problems/rna/) [C#.NET]
 * String.Replace
+### [HAMM](HAMM): [Counting Point Mutations](http://rosalind.info/problems/hamm/) [C#.NET]
+* string
+* for loop
 ### [REVC](REVC): [Complementing a Strand of DNA](http://rosalind.info/problems/revc/) [C++ STL]
 * ifstream/ofstream
 * stringstream
