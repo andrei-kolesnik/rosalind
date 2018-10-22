@@ -25,3 +25,6 @@
 * extension methods (C# 3.0)
 * IEnumerable
 * yield
+### [PERM](PERM): [Enumerating Gene Orders](http://rosalind.info/problems/perm/) [C++ STL]
+* recursion
+* operator overloading
