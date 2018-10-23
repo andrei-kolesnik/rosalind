@@ -28,3 +28,11 @@
 ### [PERM](PERM): [Enumerating Gene Orders](http://rosalind.info/problems/perm/) [C++ STL]
 * recursion
 * operator overloading
+### [ORF](ORF): [Open Reading Frames](http://rosalind.info/problems/orf/) [C#.NET]
+* string to array
+* array to string
+* StringBuilder
+* Dictionary
+* IEnumerable
+* yield (nested)
+* HashSet
